@@ -1,4 +1,4 @@
-package fr.eni.pizzaonline.PizzaOnline.bo;
+package fr.eni.pizzaonline.bo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
