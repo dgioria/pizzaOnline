@@ -1,4 +1,4 @@
-package fr.eni.pizzaonline.PizzaOnline;
+package fr.eni.pizzaonline;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
