@@ -1,0 +1,53 @@
+@charset "UTF-8";
+ .overlay-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Adjust as needed */
+            background: url('/images/background-project.webp') center/cover no-repeat; /* Set your background image */
+       }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust the overlay color and opacity */
+    }
+    
+    .centered-buttons {
+		display: flex;
+		justify-content: space-around;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .centered-buttons button {
+		padding: 1rem 2rem;
+		border-radius: 5px;
+	}
+	
+	.breadcrumb-item {
+		color: white;
+	}
+	
+	.breadcrumb-item.active {
+		color: white;
+		font-weight: 700;
+		text-decoration: underline;
+	}
+	
+	.collapse.navbar-collapse {
+		text-align: center;
+	}
+	
+	ul.list-unstyled {
+		display: flex;
+		justify-content: space-around;
+	}
+	
+	li.float-lg-left a, li.float-lg-right a{
+		color: white;
+	}
