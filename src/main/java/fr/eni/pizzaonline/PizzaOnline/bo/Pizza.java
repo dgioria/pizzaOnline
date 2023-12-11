@@ -20,7 +20,13 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long noPizza;
     public String nom;
-    @OneToOne
+    
+    public Pizza(String nom) {
+		super();
+		this.nom = nom;
+	}
+    
+	@OneToOne
     public Base base;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Ingredient> ingredients;
