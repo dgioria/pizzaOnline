@@ -1,21 +1,24 @@
 package fr.eni.pizzaonline.PizzaOnline.bll;
 
-import java.util.List;
-
 import fr.eni.pizzaonline.PizzaOnline.bo.Pizza;
+import fr.eni.pizzaonline.PizzaOnline.dal.PizzaDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class PizzaManagerImpl implements PizzaManager{
+import java.util.List;
+@Service
+public class PizzaManagerImpl implements PizzaManager {
+    @Autowired
+    PizzaDAO dao;
 
-	@Override
-	public void addPizza(Pizza voiture) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void addPizza(Pizza pizza) {
+        dao.save(pizza);
+    }
 
-	@Override
-	public List<Pizza> getAllPizzas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+    @Override
+    public List<Pizza> getAllPizzas() {
+        return (List<Pizza>) dao.findAll();
+    }
+
 }
