@@ -1,4 +1,4 @@
-package fr.eni.pizzaonline;
+package fr.eni.pizzaonline.PizzaOnline;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

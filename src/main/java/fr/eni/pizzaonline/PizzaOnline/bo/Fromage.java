@@ -1,4 +1,4 @@
-package fr.eni.pizzaonline.bo;
+package fr.eni.pizzaonline.PizzaOnline.bo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +11,9 @@ import javax.persistence.Id;
 @Entity
 @Data
 @NoArgsConstructor
-public class Ingredient {
+public class Fromage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long noIngredient;
+    public long noFromage;
     public String libelle;
-    public double prix;
 }
