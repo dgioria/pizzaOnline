@@ -19,5 +19,3 @@ function addToCart(button) {
     var quantity = quantityInput.value;
     alert("Added " + quantity + " pizza(s) to the cart!");
 }
-
-
