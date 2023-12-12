@@ -15,4 +15,11 @@ public class Base {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long noBase;
     public String libelle;
+	
+    public Base(String libelle) {
+		super();
+		this.libelle = libelle;
+	}
+    
+    
 }
