@@ -14,8 +14,8 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long noClient;
-    String email;
-    String password;
+    public String email;
+    public String password;
 
     public Client(String email, String password) {
         this.email = email;
