@@ -15,7 +15,7 @@
         background-color: rgba(0, 0, 0, 0.5); /* Adjust the overlay color and opacity */
     }
     
-    .centered-buttons {
+    .centered-links {
 		display: flex;
 		justify-content: space-around;
         position: absolute;
@@ -24,7 +24,7 @@
         transform: translate(-50%, -50%);
     }
     
-    .centered-buttons button {
+    .centered-links a {
 		padding: 1rem 2rem;
 		border-radius: 5px;
 	}
@@ -34,9 +34,10 @@
 	}
 	
 	.breadcrumb-item.active {
-		color: white;
+		color: rgb(231, 154, 255);
 		font-weight: 700;
 		text-decoration: underline;
+		
 	}
 	
 	.collapse.navbar-collapse {
@@ -51,3 +52,20 @@
 	li.float-lg-left a, li.float-lg-right a{
 		color: white;
 	}
+	
+	.container-fluid.to_go {
+		margin: 0 auto;
+		text-align: center;
+		padding: 1rem;
+		
+	
+	}
+	
+	.container-fluid.to_go h2 {
+		border: 1px solid #593196;
+	}
+	.input-cart {
+        width: 50px; /* Adjust the width as needed */
+    }
+    
+	
