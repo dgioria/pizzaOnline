@@ -16,4 +16,12 @@ public class Ingredient {
     public long noIngredient;
     public String libelle;
     public double prix;
+	
+    public Ingredient(String libelle, double prix) {
+		super();
+		this.libelle = libelle;
+		this.prix = prix;
+	}
+    
+    
 }

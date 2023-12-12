@@ -1,5 +1,6 @@
 package fr.eni.pizzaonline.PizzaOnline.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -21,15 +22,24 @@ public class Pizza {
     public long noPizza;
     public String nom;
     
+	@OneToOne
+    public Base base;
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<Ingredient> ingredients = new ArrayList<Ingredient>();
+    @OneToOne
+    public Fromage fromage;
+    
     public Pizza(String nom) {
 		super();
 		this.nom = nom;
 	}
+
+	public Pizza(String nom, Base base, Fromage fromage) {
+		super();
+		this.nom = nom;
+		this.base = base;
+		this.fromage = fromage;
+	}
     
-	@OneToOne
-    public Base base;
-    @OneToMany(cascade = CascadeType.ALL)
-    public List<Ingredient> ingredients;
-    @OneToOne
-    public Fromage fromage;
+    
 }
