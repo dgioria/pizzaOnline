@@ -20,7 +20,7 @@ import jakarta.transaction.Transactional;
 
 @SpringBootApplication
 public class PizzaOnlineApplication {
-
+	
 	@Autowired
 	PizzaManager pizzaManager;
 	@Autowired
@@ -29,25 +29,25 @@ public class PizzaOnlineApplication {
 	FromageDAO fromageDAO;
 	@Autowired
 	BaseDAO baseDAO;
-
+	
 	@PostConstruct
 	@Transactional
 	private void init() {
-
+		
 		Fromage f1 = new Fromage("Mozzarella");
 		Fromage f2 = new Fromage("Cheddar");
 		Fromage f3 = new Fromage("Camambert");
 		fromageDAO.save(f1);
 		fromageDAO.save(f2);
 		fromageDAO.save(f3);
-
+		
 		Base b1 = new Base("Sauce Tomate");
 		Base b2 = new Base("Creme");
 		Base b3 = new Base("Sauce Barbecue");
 		baseDAO.save(b1);
 		baseDAO.save(b2);
 		baseDAO.save(b3);
-
+		
 		Ingredient i1 = new Ingredient("Ananas", 20.0);
 		Ingredient i2 = new Ingredient("Viande Haché", 3.0);
 		Ingredient i3 = new Ingredient("Miel", 4.5);
@@ -58,26 +58,26 @@ public class PizzaOnlineApplication {
 		Ingredient i8 = new Ingredient("Poulet", 4.5);
 		Ingredient i9 = new Ingredient("Olives", 4.5);
 
-		Pizza p1 = new Pizza("Hawai", b2, f1);
+		Pizza p1 = new Pizza("Hawai", b2, f1, 8.50);
 		p1.getIngredients().add(i6);
 		p1.getIngredients().add(i5);
 		p1.getIngredients().add(i4);
 		pizzaManager.addPizza(p1);
-
-		Pizza p2 = new Pizza("Burger", b1, f2);
+		
+		Pizza p2 = new Pizza("Burger", b1, f2, 15.80);
 		p2.getIngredients().add(i1);
 		p2.getIngredients().add(i2);
 		p2.getIngredients().add(i3);
 		pizzaManager.addPizza(p2);
-
-		Pizza p3 = new Pizza("Kebab", b3, f3);
+		
+		Pizza p3 = new Pizza("Kebab", b3, f3, 20.50);
 		p3.getIngredients().add(i7);
 		p3.getIngredients().add(i8);
 		p3.getIngredients().add(i9);
 		pizzaManager.addPizza(p3);
-
+		
 	}
-
+	
     public static void main(String[] args) {
         SpringApplication.run(PizzaOnlineApplication.class, args);
     }
