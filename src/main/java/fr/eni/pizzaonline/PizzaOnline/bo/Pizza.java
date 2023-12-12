@@ -21,6 +21,7 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long noPizza;
     public String nom;
+    public Double prix;
     
 	@OneToOne
     public Base base;
@@ -29,16 +30,18 @@ public class Pizza {
     @OneToOne
     public Fromage fromage;
     
+    
     public Pizza(String nom) {
 		super();
 		this.nom = nom;
 	}
 
-	public Pizza(String nom, Base base, Fromage fromage) {
+	public Pizza(String nom, Base base, Fromage fromage, Double prix) {
 		super();
 		this.nom = nom;
 		this.base = base;
 		this.fromage = fromage;
+		this.prix = prix;
 	}
     
     

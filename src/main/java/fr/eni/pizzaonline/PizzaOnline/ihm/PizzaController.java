@@ -38,4 +38,11 @@ public class PizzaController {
 		model.addAttribute("listPizzas", listPizzas);
 		return "all_pizza";
 	}
+	
+	
+	@GetMapping("/cart")
+	public String showAll() {
+		
+		return "cart";
+	}
 }
