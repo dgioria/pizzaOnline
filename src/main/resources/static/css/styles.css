@@ -56,9 +56,17 @@
 	.container-fluid.to_go {
 		margin: 0 auto;
 		text-align: center;
-		padding: 1rem;
-		
+		padding: 1rem;	
 	
+	}
+	div.d-flex.align-items-center.quantity {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+	
+	li.list-group-item.ingredient {
+		background-color: white;
+		color: black;
 	}
 	
 	.container-fluid.to_go h2 {
@@ -67,5 +75,11 @@
 	.input-cart {
         width: 50px; /* Adjust the width as needed */
     }
+    
+    .petit {
+		font-size: .8rem;
+		font-style: italic;
+		
+	}
     
 	

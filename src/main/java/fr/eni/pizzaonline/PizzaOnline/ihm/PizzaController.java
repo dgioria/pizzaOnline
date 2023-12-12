@@ -34,6 +34,7 @@ public class PizzaController {
              model.addAttribute("pageTitle", "All Pizzas");
              break;
      }
+		 
 		model.addAttribute("listPizzas", listPizzas);
 		return "all_pizza";
 	}
