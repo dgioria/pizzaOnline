@@ -15,7 +15,7 @@
         background-color: rgba(0, 0, 0, 0.5); /* Adjust the overlay color and opacity */
     }
     
-    .centered-buttons {
+    .centered-links {
 		display: flex;
 		justify-content: space-around;
         position: absolute;
@@ -24,7 +24,7 @@
         transform: translate(-50%, -50%);
     }
     
-    .centered-buttons button {
+    .centered-links a {
 		padding: 1rem 2rem;
 		border-radius: 5px;
 	}
