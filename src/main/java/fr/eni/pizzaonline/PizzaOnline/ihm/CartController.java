@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import fr.eni.pizzaonline.PizzaOnline.bll.PizzaManager;
 import fr.eni.pizzaonline.PizzaOnline.bo.OrderRow;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/cart")
@@ -26,7 +27,10 @@ public class CartController {
 	private List<OrderRow> order= new ArrayList<>();
 	
 	@GetMapping("")
-	public String showAll(HttpServletRequest request, Model model) {
+	public String showAll(HttpServletRequest request, HttpSession session, Model model) {
+		
+		if(session.getAttribute("client") == null)
+			return "redirect:/client/connexion";
 		
 		List<OrderRow> orderList = (List<OrderRow>) request.getSession().getAttribute("order");
 		if(orderList != null) {
@@ -43,12 +47,14 @@ public class CartController {
 	}
 	
 	@PostMapping("/add")
-	public String addPizza(@RequestBody OrderRow orderRow, HttpServletRequest request) {
+	public String addPizza(@RequestBody OrderRow orderRow, HttpServletRequest request, HttpSession session) {
+		
+		if(session.getAttribute("client") == null)
+			return "redirect:/client/connexion";
 		
 		if(orderRow != null) {
 			order.add(orderRow);
 		}
-		
 		
 		request.getSession().setAttribute("order", order);
 		return "all_pizza";
