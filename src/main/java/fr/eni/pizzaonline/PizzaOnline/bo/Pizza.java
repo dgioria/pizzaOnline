@@ -21,10 +21,12 @@ public class Pizza {
     public List<Ingredient> ingredients = new ArrayList<Ingredient>();
     @ManyToMany
     public List<Fromage> fromages = new ArrayList<Fromage>();
+    public double prix;
 
-    public Pizza(String nom, Base base) {
+    public Pizza(String nom, Base base, double prix) {
         super();
         this.nom = nom;
         this.base = base;
+        this.prix = prix;
     }
 }
