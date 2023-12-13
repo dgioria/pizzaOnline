@@ -1,6 +1,6 @@
 package fr.eni.pizzaonline.PizzaOnline.bll;
 
-import fr.eni.pizzaonline.PizzaOnline.bo.OrderRow;
+import fr.eni.pizzaonline.PizzaOnline.bo.CommandeLigne;
 import fr.eni.pizzaonline.PizzaOnline.bo.Pizza;
 import fr.eni.pizzaonline.PizzaOnline.dal.PizzaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +24,11 @@ public class PizzaManagerImpl implements PizzaManager {
     }
 
 	@Override
-	public Double computFinalPrice(List<OrderRow> order) {
+	public Double computFinalPrice(List<CommandeLigne> order) {
 		
 		Double total= 0.0;
-		for(OrderRow row : order) {
-			total+= row.getPrice()*row.getQuantity();
+		for(CommandeLigne row : order) {
+			//total+= row.getPrice()*row.getQuantity();
 		}
 		return total;
 	}

@@ -15,11 +15,10 @@ public class Base {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long noBase;
     public String libelle;
-	
-    public Base(String libelle) {
+	public double prix;
+    public Base(String libelle, double prix) {
 		super();
 		this.libelle = libelle;
+        this.prix = prix;
 	}
-    
-    
 }
