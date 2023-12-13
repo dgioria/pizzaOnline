@@ -71,7 +71,7 @@ public class PizzaOnlineApplication {
 		ingredientDAO.save(i8);
 		ingredientDAO.save(i9);;
 
-		Pizza p1 = new Pizza("Hawai", b1);
+		Pizza p1 = new Pizza("Hawai", b1,4.8);
 		p1.getIngredients().add(i1);
 		p1.getIngredients().add(i2);
 		p1.getIngredients().add(i3);
@@ -79,7 +79,7 @@ public class PizzaOnlineApplication {
 		p1.getFromages().add(f2);
 		pizzaManager.addPizza(p1);
 
-		Pizza p2 = new Pizza("Burger", b1);
+		Pizza p2 = new Pizza("Burger", b1,8.9);
 		p2.getIngredients().add(i1);
 		p2.getIngredients().add(i2);
 		p2.getIngredients().add(i3);
@@ -87,7 +87,7 @@ public class PizzaOnlineApplication {
 		p2.getFromages().add(f2);
 		pizzaManager.addPizza(p2);
 
-		Pizza p3 = new Pizza("Kebab", b2);
+		Pizza p3 = new Pizza("Kebab", b2,7.8);
 		p3.getIngredients().add(i2);
 		p3.getIngredients().add(i3);
 		p3.getIngredients().add(i5);
