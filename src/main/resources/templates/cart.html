@@ -40,9 +40,14 @@
                         </div>
                     </div>
                 </div>	
-                <div >
+                <div th:if="${total != null}">
                     <p class="mt-2">Final price : <strong th:text="${total}"></strong> €</p>
+            	</div>
+            	
+            	
             </div>
+            <div th:if="${orderList == null and #lists.isEmpty(orderList)}">
+                    <p class="mt-2">You haven't chosen any pizza yet !</p>
             </div>
         </div>    
 	</main>

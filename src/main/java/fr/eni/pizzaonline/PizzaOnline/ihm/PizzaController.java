@@ -21,7 +21,7 @@ import fr.eni.pizzaonline.PizzaOnline.bo.Ingredient;
 @Controller
 @RequestMapping("/pizza")
 public class PizzaController {
-	
+	//
 	@Autowired
 	PizzaManager manager;
 	
@@ -76,5 +76,5 @@ public class PizzaController {
 		model.addAttribute("pageTitle", "Restaurant");
 		return "restaurant";
 	}
-
+ 
 }

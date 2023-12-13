@@ -22,16 +22,21 @@ public class CartController {
 	@Autowired
 	PizzaManager pizzaManager;
 	
+	
 	private List<OrderRow> order= new ArrayList<>();
 	
 	@GetMapping("")
 	public String showAll(HttpServletRequest request, Model model) {
-		List<OrderRow> orderList = (List<OrderRow>) request.getSession().getAttribute("order");
 		
-		Double total = pizzaManager.computFinalPrice(orderList);
+		List<OrderRow> orderList = (List<OrderRow>) request.getSession().getAttribute("order");
+		if(orderList != null) {
+			
+			Double total = pizzaManager.computFinalPrice(orderList);
+			model.addAttribute("total", total);
+		}
 	
 		model.addAttribute("orderList", orderList);
-		model.addAttribute("total", total);
+		
 		
 		
 		return "cart";
