@@ -1,0 +1,75 @@
+html, body {
+    background-color: #910fcd;
+}
+
+.eni-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 300px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    display: block;
+    width: 100%;
+    color: white;
+}
+
+.eni-input {
+    background: none;
+    border: 1px solid white;
+    padding: 0.7rem;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.eni-input::placeholder {
+    color: white;
+}
+
+.eni-input:hover {
+    background: #FFFFFF22;
+}
+
+.eni-form-group {
+    padding: 0.5rem 0;
+    box-sizing: border-box;
+}
+
+.eni-button, .eni-link {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid white;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    background-color: white;
+    padding: 0.5rem 0;
+    box-sizing: border-box;
+    color: #910fcd;
+}
+
+.eni-button:hover, .eni-link:hover {
+    background: #FFFFFF22;
+    color: white;
+}
+
+.eni-message {
+    margin-top: 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: darkslateblue;
+    color: white;
+    text-align: center;
+}
+
+.eni-message p {
+    margin: 0;
+}

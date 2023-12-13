@@ -1,5 +1,8 @@
 <!DOCTYPE html>
  <header>
+    <div th:if="${message}" class="eni-message">
+        <p th:text="${message}"></p>
+    </div>
         <nav class="navbar navbar-expand-md bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">PI</a>

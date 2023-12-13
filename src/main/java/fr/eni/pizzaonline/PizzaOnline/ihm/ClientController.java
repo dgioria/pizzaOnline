@@ -19,21 +19,16 @@ public class ClientController {
 
     @GetMapping("/inscription")
     public String getInscriptionPage(HttpServletRequest request) {
-        String referer = request.getHeader("Referer");
-        request.getSession().setAttribute("previousPage", referer);
         return "inscription";
     }
 
     @GetMapping("/connexion")
     public String getConnexionPage(HttpServletRequest request) {
-        String referer = request.getHeader("Referer");
-        request.getSession().setAttribute("previousPage", referer);
         return "connexion";
     }
 
     @GetMapping("/cancel")
     public String cancel(HttpServletRequest request) {
-        //return "redirect:" + request.getSession().getAttribute("previousPage");
         return "redirect:/";
     }
 
@@ -41,14 +36,14 @@ public class ClientController {
     public String handleInscriptionForm(@RequestParam("email") String email,
                                         @RequestParam("password") String password,
                                         RedirectAttributes redirectAttributes) {
-        Client client = manager.getByEmail(email);
-        if (client == null) {
+        if (manager.getByEmail(email) == null) {
             manager.addClient(new Client(email, password));
             redirectAttributes.addFlashAttribute("message", "Vous êtes ajouté");
+            return "redirect:/client/connexion";
         } else {
             redirectAttributes.addFlashAttribute("message", "Utilisateur existant");
+            return "redirect:/client/inscription";
         }
-        return "redirect:/client/inscription";
     }
 
     @PostMapping("/connexion")
@@ -58,12 +53,13 @@ public class ClientController {
         Client client = manager.getByEmail(email);
         if (client == null) {
             redirectAttributes.addFlashAttribute("message", "Utilisateur introuvable");
+            return "redirect:/client/connexion";
         } else if (client.password.equals(password)) {
             redirectAttributes.addFlashAttribute("message", "Vous êtes connecté");
+            return "redirect:/";
         } else {
             redirectAttributes.addFlashAttribute("message", "Mot de passe incorrect");
+            return "redirect:/client/connexion";
         }
-        return "redirect:/client/connexion";
     }
 }
-
