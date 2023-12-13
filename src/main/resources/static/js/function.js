@@ -37,7 +37,7 @@ function addToCart(button) {
 
     // Create a data object with the pizza information
     let pizzaData = {
-        name: pizzaName,
+        pizzaName: pizzaName,
         quantity: quantity,
         price: price
     };
@@ -50,10 +50,23 @@ function addToCart(button) {
         },
         body: JSON.stringify(pizzaData)
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log(response.status); // Log the HTTP status code
+        return response.text(); // Retrieve the response as text
+    })
     .then(data => {
-        // Handle the response, e.g., show a success message
-        alert(data.message);
+        // Log the response as text
+        // Check if the response contains HTML
+        if (data.includes('<html') || data.includes('<!DOCTYPE')) {
+            // Handle the HTML response, e.g., display it in a modal or alert
+           
+        } else {
+            // Parse the JSON response
+            let jsonData = JSON.parse(data);
+            console.log(jsonData);
+            // Handle the response, e.g., show a success message
+
+        }
     })
     .catch(error => {
         console.error('Error:', error);
