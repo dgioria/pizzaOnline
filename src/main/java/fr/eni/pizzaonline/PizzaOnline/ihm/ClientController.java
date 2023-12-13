@@ -27,10 +27,6 @@ public class ClientController {
         return "connexion";
     }
 
-    @GetMapping("/cancel")
-    public String cancel(HttpServletRequest request) {
-        return "redirect:/";
-    }
 
     @PostMapping("/inscription")
     public String handleInscriptionForm(@RequestParam("email") String email,
