@@ -1,4 +1,7 @@
 */application.properties
+src/main/resources/application.properties
+
+build.gradle
 
 HELP.md
 
@@ -41,4 +44,3 @@ out/
 
 ### VS Code ###
 .vscode/
-

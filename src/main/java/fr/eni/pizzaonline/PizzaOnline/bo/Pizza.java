@@ -27,8 +27,8 @@ public class Pizza {
     public Base base;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Ingredient> ingredients = new ArrayList<Ingredient>();
-    @OneToOne
-    public Fromage fromage;
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<Fromage> fromages = new ArrayList<Fromage>();
     
     
     public Pizza(String nom) {
@@ -36,11 +36,10 @@ public class Pizza {
 		this.nom = nom;
 	}
 
-	public Pizza(String nom, Base base, Fromage fromage, Double prix) {
+	public Pizza(String nom, Base base, Double prix) {
 		super();
 		this.nom = nom;
 		this.base = base;
-		this.fromage = fromage;
 		this.prix = prix;
 	}
     
