@@ -27,10 +27,13 @@ public class CartController {
 	@GetMapping("")
 	public String showAll(HttpServletRequest request, Model model) {
 		List<OrderRow> orderList = (List<OrderRow>) request.getSession().getAttribute("order");
+		
 		Double total = pizzaManager.computFinalPrice(orderList);
 	
 		model.addAttribute("orderList", orderList);
 		model.addAttribute("total", total);
+		
+		
 		return "cart";
 	}
 	
@@ -41,7 +44,7 @@ public class CartController {
 			order.add(orderRow);
 		}
 		
-		System.out.println(orderRow);
+		
 		request.getSession().setAttribute("order", order);
 		return "all_pizza";
 	}
