@@ -2,9 +2,10 @@ package fr.eni.pizzaonline.PizzaOnline.ihm;
 
 import fr.eni.pizzaonline.PizzaOnline.bll.ClientManager;
 import fr.eni.pizzaonline.PizzaOnline.bo.Client;
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,15 +19,29 @@ public class ClientController {
     ClientManager manager;
 
     @GetMapping("/inscription")
-    public String getInscriptionPage(HttpServletRequest request) {
+    public String getInscriptionPage() {
         return "inscription";
     }
 
     @GetMapping("/connexion")
-    public String getConnexionPage(HttpServletRequest request) {
+    public String getConnexionPage() {
         return "connexion";
     }
 
+    @GetMapping("/compte")
+    public String getComptePage(Model model, HttpSession session) {
+        Client client = (Client) session.getAttribute("client");
+        model.addAttribute("client", client);
+        return "compte";
+    }
+
+    @GetMapping("/disconnexion")
+    public String disconnexion(HttpSession session,
+                               RedirectAttributes redirectAttributes) {
+        session.removeAttribute("client");
+        redirectAttributes.addFlashAttribute("message", "Vous êtes déconnecté");
+        return "redirect:/";
+    }
 
     @PostMapping("/inscription")
     public String handleInscriptionForm(@RequestParam("email") String email,
@@ -45,12 +60,14 @@ public class ClientController {
     @PostMapping("/connexion")
     public String handleConnexionForm(@RequestParam("email") String email,
                                       @RequestParam("password") String password,
-                                      RedirectAttributes redirectAttributes) {
+                                      RedirectAttributes redirectAttributes,
+                                      HttpSession session) {
         Client client = manager.getByEmail(email);
         if (client == null) {
             redirectAttributes.addFlashAttribute("message", "Utilisateur introuvable");
             return "redirect:/client/connexion";
         } else if (client.password.equals(password)) {
+            session.setAttribute("client", client);
             redirectAttributes.addFlashAttribute("message", "Vous êtes connecté");
             return "redirect:/";
         } else {
