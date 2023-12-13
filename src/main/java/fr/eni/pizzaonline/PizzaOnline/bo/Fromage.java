@@ -15,10 +15,10 @@ public class Fromage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long noFromage;
     public String libelle;
-    
-	public Fromage(String libelle) {
-		super();
-		this.libelle = libelle;
-	}
-    
+    double prix;
+
+    public Fromage(String libelle, double prix) {
+        this.libelle = libelle;
+        this.prix = prix;
+    }
 }
