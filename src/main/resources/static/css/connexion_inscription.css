@@ -1,5 +1,5 @@
 html, body {
-    background-color: #910fcd;
+    background-color: blueviolet;
 }
 
 .eni-container {
@@ -42,7 +42,7 @@ h1 {
     box-sizing: border-box;
 }
 
-.eni-button, .eni-link {
+.eni-button {
     width: 100%;
     padding: 0.7rem;
     border: 1px solid white;
@@ -56,7 +56,7 @@ h1 {
     color: #910fcd;
 }
 
-.eni-button:hover, .eni-link:hover {
+.eni-button:hover {
     background: #FFFFFF22;
     color: white;
 }
