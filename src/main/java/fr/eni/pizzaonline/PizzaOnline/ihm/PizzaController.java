@@ -45,11 +45,7 @@ public class PizzaController {
 	}
 	
 	
-	@GetMapping("/cart")
-	public String showAll() {
-		
-		return "cart";
-	}
+	
 	
 	@GetMapping("/custom")
 	public String createPizza(Model model) {
@@ -59,4 +55,6 @@ public class PizzaController {
 		
 		return "custom_pizza";
 	}
+	
+	
 }
