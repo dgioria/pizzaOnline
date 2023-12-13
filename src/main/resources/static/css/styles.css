@@ -81,5 +81,22 @@
 		font-style: italic;
 		
 	}
+
+	.carousel-item img.img-resize {
+		width: 70%;
+		height: auto;
+		margin: 0 auto;
+	}
+
+	.two-columns {
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.column {
+		width: 48%; /* Ajustez selon vos besoins */
+	}
+	
+	
     
 	

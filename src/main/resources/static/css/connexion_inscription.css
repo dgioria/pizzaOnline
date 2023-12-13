@@ -1,3 +1,7 @@
+main {
+    height:83vh; /* Adjust the value as needed */
+   
+}
 html, body {
     background-color: blueviolet;
 }
@@ -73,3 +77,4 @@ h1 {
 .eni-message p {
     margin: 0;
 }
+

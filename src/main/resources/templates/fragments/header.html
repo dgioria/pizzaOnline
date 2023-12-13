@@ -25,7 +25,7 @@
 		          </div>
 		        </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Restaurant</a>
+                    <a class="nav-link" th:href="@{/pizza/restaurant}">Restaurant</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
@@ -34,16 +34,16 @@
             <div>
                 <ul class="navbar-nav">
                     <li class="nav-item" th:if="${#ctx.session.client} == null">
-                        <a class="nav-link" th:href="@{/client/inscription}">S'inscrire</a>
+                        <a class="nav-link" th:href="@{/client/inscription}">Register</a>
                     </li>
                     <li class="nav-item" th:if="${#ctx.session.client} == null">
-                        <a class="nav-link" th:href="@{/client/connexion}">Se connecter</a>
+                        <a class="nav-link" th:href="@{/client/connexion}">Log in</a>
                     </li>
                     <li class="nav-item" th:if="${#ctx.session.client} != null">
-                        <a class="nav-link" th:href="@{/client/compte}">Compte</a>
+                        <a class="nav-link" th:href="@{/client/compte}">My account</a>
                     </li>
                     <li class="nav-item" th:if="${#ctx.session.client} != null">
-                        <a class="nav-link" th:href="@{/client/disconnexion}">Se déconnecter</a>
+                        <a class="nav-link" th:href="@{/client/disconnexion}">Loggout</a>
                     </li>
                     <li class="nav-item">
 
