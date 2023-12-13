@@ -45,4 +45,10 @@ public class PizzaController {
 		
 		return "cart";
 	}
+	
+	@GetMapping("/restaurant")
+	public String showRestaurant(Model model) {
+		model.addAttribute("pageTitle", "Restaurant");
+		return "restaurant";
+	}
 }
