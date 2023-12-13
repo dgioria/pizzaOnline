@@ -15,6 +15,7 @@ import fr.eni.pizzaonline.PizzaOnline.bll.IngredientManager;
 import fr.eni.pizzaonline.PizzaOnline.bll.PizzaManager;
 import fr.eni.pizzaonline.PizzaOnline.bo.Base;
 import fr.eni.pizzaonline.PizzaOnline.bo.Pizza;
+import jakarta.servlet.http.HttpSession;
 import fr.eni.pizzaonline.PizzaOnline.bo.Fromage;
 import fr.eni.pizzaonline.PizzaOnline.bo.Ingredient;
 
@@ -24,50 +25,55 @@ public class PizzaController {
 	//
 	@Autowired
 	PizzaManager manager;
-	
+
 	@Autowired
 	BaseManager baseManager;
-	
+
 	@Autowired
 	FromageManager fromManager;
-	
+
 	@Autowired
 	IngredientManager ingredientManager;
-	
+
 	@GetMapping("")
-	public String showAll(@RequestParam(name = "menu", defaultValue = "all") String menu, Model model) {
-		List<Pizza> listPizzas = manager.getAllPizzas();
+	public String showAll(@RequestParam(name = "menu", defaultValue = "all") String menu, HttpSession session,
+			Model model) {
 		
-		 switch (menu) {
-         case "to-go":
-             model.addAttribute("pageTitle", "To Go");
-             break;
-         case "on-site":
-             model.addAttribute("pageTitle", "On Site");
-             break;
-         default:
-             model.addAttribute("pageTitle", "All Pizzas");
-             break;
-     }
-		 
+		if(session.getAttribute("client") == null)
+			return "redirect:/client/connexion";
+					
+		List<Pizza> listPizzas = manager.getAllPizzas();
+
+		switch (menu) {
+		case "to-go":
+			model.addAttribute("pageTitle", "To Go");
+			break;
+		case "on-site":
+			model.addAttribute("pageTitle", "On Site");
+			break;
+		default:
+			model.addAttribute("pageTitle", "All Pizzas");
+			break;
+		}
+
 		model.addAttribute("listPizzas", listPizzas);
 		return "all_pizza";
 	}
-	
-	
-	
-	
+
 	@GetMapping("/custom")
-	public String createPizza(Model model) {
+	public String createPizza(HttpSession session, Model model) {
+		
+		if(session.getAttribute("client") == null)
+			return "redirect:/client/connexion";
+		
 		List<Base> listBases = baseManager.getAllBases();
 		List<Fromage> listFromages = fromManager.getAllFromages();
 		List<Ingredient> listIngredients = ingredientManager.getAllIngredients();
-		
-		
+
 		model.addAttribute("listBases", listBases);
 		model.addAttribute("listFromages", listFromages);
 		model.addAttribute("listIngredients", listIngredients);
-		
+
 		return "custom_pizza";
 	}
 
@@ -76,5 +82,5 @@ public class PizzaController {
 		model.addAttribute("pageTitle", "Restaurant");
 		return "restaurant";
 	}
- 
+
 }
