@@ -33,21 +33,20 @@
                         <div class="card-body">
                             <h5 class="card-title" th:text="${pizza.nom}"></h5>
                             <span class="petit">ingredients:</span>
-                            <ul class="list-group ingredient"  th:each="ingredient : ${pizza.ingredients}">
-                               
+                            <ul class="list-group ingredient"  th:each="ingredient : ${pizza.ingredients}">   
                                 <li class="list-group-item ingredient" th:text="${ingredient.libelle}"></li>   
                             </ul>
-                            <span class="petit">Fromage:</span>
-                            <p class="card-text" th:text="${pizza.fromage.libelle}"></p>    
+                          
+                            <span class="petit">Fromages:</span>
+                            <ul class="list-group ingredient"  th:each="fromage : ${pizza.fromages}">
+                               
+                                <li class="list-group-item ingredient" th:text="${fromage.libelle}"></li>   
+                            </ul>    
                             <div class="d-flex align-items-center quantity">
                                 <button class="btn btn-outline-primary me-2" onclick="decrementQuantity(this)">-</button>
                                 <input type="number" class="form-control text-center input-cart" name="quantity" value="0" readonly>
                                 <button class="btn btn-outline-primary ms-2" onclick="incrementQuantity(this)">+</button>
-                                <button class="btn btn-primary ms-auto" onclick="addToCart(this)"
-                                    th:data-pizza-name="${pizza.nom}"
-                                    th:data-pizza-ingredients="${#strings.arrayJoin(pizza.ingredients, ',')}"
-                                    th:data-pizza-fromage="${pizza.fromage.libelle}"
-                                    th:data-pizza-price="${pizza.prix}">Add to Cart</button>
+                                <button id="addCart" class="btn btn-primary ms-auto" onclick="addToCart(this)">Add to Cart</button>
                             </div>
             
                             <p class="mt-2"><strong th:text="${pizza.prix}"></strong> €</p>
@@ -65,3 +64,4 @@
 <script src="/js/function.js"></script>
 </body>
 </html>
+<!--hof-->

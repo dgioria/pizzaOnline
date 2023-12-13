@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.eni.pizzaonline.PizzaOnline.bll.BaseManager;
 import fr.eni.pizzaonline.PizzaOnline.bll.PizzaManager;
+import fr.eni.pizzaonline.PizzaOnline.bo.Base;
 import fr.eni.pizzaonline.PizzaOnline.bo.Pizza;
 
 @Controller
@@ -18,6 +20,9 @@ public class PizzaController {
 	
 	@Autowired
 	PizzaManager manager;
+	
+	@Autowired
+	BaseManager baseManager;
 	
 	@GetMapping("")
 	public String showAll(@RequestParam(name = "menu", defaultValue = "all") String menu, Model model) {
@@ -40,15 +45,21 @@ public class PizzaController {
 	}
 	
 	
-	@GetMapping("/cart")
-	public String showAll() {
-		
-		return "cart";
-	}
 	
+	
+	@GetMapping("/custom")
+	public String createPizza(Model model) {
+		List<Base> listBases = baseManager.getAllBases();
+		
+		model.addAttribute("listBases", listBases);
+		
+		return "custom_pizza";
+	}
+
 	@GetMapping("/restaurant")
 	public String showRestaurant(Model model) {
 		model.addAttribute("pageTitle", "Restaurant");
 		return "restaurant";
 	}
+
 }
