@@ -1,5 +1,6 @@
 package fr.eni.pizzaonline.PizzaOnline.bll;
 
+import fr.eni.pizzaonline.PizzaOnline.bo.CommandeLigne;
 import fr.eni.pizzaonline.PizzaOnline.bo.OrderRow;
 import fr.eni.pizzaonline.PizzaOnline.bo.Pizza;
 import fr.eni.pizzaonline.PizzaOnline.dal.PizzaDAO;
@@ -24,13 +25,19 @@ public class PizzaManagerImpl implements PizzaManager {
     }
 
 	@Override
-	public Double computFinalPrice(List<OrderRow> order) {
+	public Double computFinalPrice(List<CommandeLigne> commandeLignes) {
 		
 		Double total= 0.0;
-		for(OrderRow row : order) {
-			total+= row.getPrice()*row.getQuantity();
+		for(CommandeLigne ligne : commandeLignes) {
+			total+= ligne.getPizza().getPrix()*ligne.getQuantite();
 		}
-		return total;
+		return Math.floor(total * 100) / 100;
+	}
+
+	@Override
+	public Pizza getByNom(String name) {
+		
+		return dao.findByNom(name);
 	}
 
 }

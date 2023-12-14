@@ -104,12 +104,12 @@ public class PizzaOnlineApplication {
 		Client client = new Client("root@gmail.com","root");
 		clientManager.addClient(client);
 
-		Commande c1 = new Commande("20/02/2022",client,40.2);
+		Commande c1 = new Commande("20/02/2022",client);
 		c1.getCommandeLignes().add(c1l1);
 		c1.getCommandeLignes().add(c1l2);
 		commandeDAO.save(c1);
 
-		Commande c2 = new Commande("24/02/2022",client,27.2);
+		Commande c2 = new Commande("24/02/2022",client);
 		c2.getCommandeLignes().add(c2l1);
 		commandeDAO.save(c2);
 	}
