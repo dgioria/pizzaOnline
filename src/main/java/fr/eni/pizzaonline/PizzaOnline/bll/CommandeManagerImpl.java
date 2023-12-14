@@ -10,12 +10,24 @@ import fr.eni.pizzaonline.PizzaOnline.bo.Commande;
 import fr.eni.pizzaonline.PizzaOnline.bo.CommandeLigne;
 import fr.eni.pizzaonline.PizzaOnline.bo.OrderRow;
 import fr.eni.pizzaonline.PizzaOnline.bo.Pizza;
+import fr.eni.pizzaonline.PizzaOnline.dal.BaseDAO;
 import fr.eni.pizzaonline.PizzaOnline.dal.CommandeDAO;
+import fr.eni.pizzaonline.PizzaOnline.dal.FromageDAO;
+import fr.eni.pizzaonline.PizzaOnline.dal.IngredientDAO;
 
 @Service
 public class CommandeManagerImpl implements CommandeManager {
 	@Autowired
 	CommandeDAO dao;
+	
+	@Autowired
+	IngredientDAO ingredientDao;
+	
+	@Autowired
+	FromageDAO fromageDao;
+	
+	@Autowired
+	BaseDAO baseDao;
 
 	@Autowired
 	PizzaManager pizzaManager;
@@ -38,9 +50,29 @@ public class CommandeManagerImpl implements CommandeManager {
 			}
 		}
 
-		Pizza pizza = pizzaManager.getByNom(orderRow.getPizzaName());
+		Pizza pizza;
+		if(pizzaManager.getByNom(orderRow.getPizzaName()) == null) {
+			pizza = new Pizza(orderRow.getPizzaName(), null, orderRow.getPrice());
+			populatePizza(pizza, orderRow);
+			pizzaManager.addPizza(pizza);
+		}else {
+			pizza = pizzaManager.getByNom(orderRow.getPizzaName());
+		}
+		
 		CommandeLigne commandeLigne = new CommandeLigne(pizza, orderRow.getQuantity());
 		commande.getCommandeLignes().add(commandeLigne);
 
+	}
+
+	private void populatePizza(Pizza pizza, OrderRow orderRow) {
+		for(String ingredient : orderRow.getIngredients()) {
+			pizza.getIngredients().add(ingredientDao.findByLibelle(ingredient));
+		}
+		for(String fromage : orderRow.getFromages()) {
+			pizza.getFromages().add(fromageDao.findByLibelle(fromage));
+		}
+		
+		pizza.setBase(baseDao.findByLibelle(orderRow.getBase()));
+		
 	}
 }

@@ -137,7 +137,10 @@ function handleSubmit(event){
     let pizzaData = {
         pizzaName: pizzaName,
         quantity: 1,
-        price: finalPrice
+        price: finalPrice,
+        base: base,
+        ingredients: selectedToppings,
+        fromages: selectedCheeses
     };
 
     // Make an Ajax request to add the pizza to the cart
