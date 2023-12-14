@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fr.eni.pizzaonline.PizzaOnline.bll.CommandeManager;
 import fr.eni.pizzaonline.PizzaOnline.bll.PizzaManager;
 import fr.eni.pizzaonline.PizzaOnline.bo.Commande;
 import fr.eni.pizzaonline.PizzaOnline.bo.CommandeLigne;
 import fr.eni.pizzaonline.PizzaOnline.bo.OrderRow;
-import fr.eni.pizzaonline.PizzaOnline.bo.Pizza;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -22,6 +22,9 @@ public class CartController {
 
 	@Autowired
 	PizzaManager pizzaManager;
+	
+	@Autowired
+	CommandeManager commandeManager;
 
 	@GetMapping("")
 	public String showAll(HttpServletRequest request, HttpSession session, Model model) {
@@ -46,10 +49,9 @@ public class CartController {
 		if (session.getAttribute("client") == null)
 			return "redirect:/client/connexion";
 		
-		Pizza pizza = pizzaManager.getByNom(orderRow.getPizzaName());
-		CommandeLigne commandeLigne = new CommandeLigne(pizza, orderRow.getQuantity());
+		// si la pizza est deja dans la commande -> je modifie la quantite, sinon -> je cree une nouvelle ligne de la commande
 		Commande commande = (Commande) session.getAttribute("commande");
-		commande.getCommandeLignes().add(commandeLigne);
+		commandeManager.updateCommande(commande, orderRow);
 
 		session.setAttribute("commande", commande);
 		
