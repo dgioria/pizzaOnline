@@ -33,4 +33,10 @@ public class PizzaManagerImpl implements PizzaManager {
 		return total;
 	}
 
+	@Override
+	public Pizza getByNom(String name) {
+		
+		return dao.findByNom(name);
+	}
+
 }

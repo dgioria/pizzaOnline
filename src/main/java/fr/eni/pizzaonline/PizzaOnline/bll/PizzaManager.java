@@ -10,4 +10,6 @@ public interface PizzaManager {
 
     public List<Pizza> getAllPizzas();
     public Double computFinalPrice(List<OrderRow> order);
+    public Pizza getByNom(String name);
+    
 }

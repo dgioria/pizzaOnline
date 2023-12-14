@@ -20,68 +20,69 @@ import java.util.List;
 @Controller
 @RequestMapping("/client")
 public class ClientController {
-    @Autowired
-    ClientManager clientManager;
+	@Autowired
+	ClientManager clientManager;
 
-    @Autowired
-    CommandeManager commandeManager;
-    @GetMapping("/inscription")
-    public String getInscriptionPage() {
-        return "inscription";
-    }
+	@Autowired
+	CommandeManager commandeManager;
 
-    @GetMapping("/connexion")
-    public String getConnexionPage() {
-        return "connexion";
-    }
+	@GetMapping("/inscription")
+	public String getInscriptionPage() {
+		return "inscription";
+	}
 
-    @GetMapping("/compte")
-    public String getComptePage(Model model, HttpSession session) {
-        Client client = (Client) session.getAttribute("client");
-        model.addAttribute("client", client);
-        List<Commande> commandes = commandeManager.getCommandesByClient(client);
-        model.addAttribute("commandes", commandes);
-        return "compte";
-    }
+	@GetMapping("/connexion")
+	public String getConnexionPage() {
+		return "connexion";
+	}
 
-    @GetMapping("/disconnexion")
-    public String disconnexion(HttpSession session,
-                               RedirectAttributes redirectAttributes) {
-        session.removeAttribute("client");
-        redirectAttributes.addFlashAttribute("message", "Vous êtes déconnecté");
-        return "redirect:/";
-    }
+	@GetMapping("/compte")
+	public String getComptePage(Model model, HttpSession session) {
+		Client client = (Client) session.getAttribute("client");
+		model.addAttribute("client", client);
+		List<Commande> commandes = commandeManager.getCommandesByClient(client);
+		model.addAttribute("commandes", commandes);
+		return "compte";
+	}
 
-    @PostMapping("/inscription")
-    public String handleInscriptionForm(@RequestParam("email") String email,
-                                        @RequestParam("password") String password,
-                                        RedirectAttributes redirectAttributes) {
-        if (clientManager.getByEmail(email) == null) {
-            clientManager.addClient(new Client(email, password));
-            redirectAttributes.addFlashAttribute("message", "Vous êtes ajouté");
-            return "redirect:/client/connexion";
-        } else {
-            redirectAttributes.addFlashAttribute("message", "Utilisateur existant");
-            return "redirect:/client/inscription";
-        }
-    }
+	@GetMapping("/disconnexion")
+	public String disconnexion(HttpSession session, RedirectAttributes redirectAttributes) {
+		session.removeAttribute("client");
+		redirectAttributes.addFlashAttribute("message", "Vous êtes déconnecté");
+		return "redirect:/";
+	}
 
-    @PostMapping("/connexion")
-    public String handleConnexionForm(@RequestParam("email") String email,
-                                      @RequestParam("password") String password,
-                                      RedirectAttributes redirectAttributes,
-                                      HttpSession session) {
-        Client client = clientManager.getByEmail(email);
-        if (client == null) {
-            redirectAttributes.addFlashAttribute("message", "Utilisateur introuvable");
-            return "redirect:/client/connexion";
-        } else if (client.password.equals(password)) {
-            session.setAttribute("client", client);
-            redirectAttributes.addFlashAttribute("message", "Vous êtes connecté");
-            return "redirect:/";
-        } else {
-            redirectAttributes.addFlashAttribute("message", "Mot de passe incorrect");
-            return "redirect:/client/connexion";
-        }
-    }
+	@PostMapping("/inscription")
+	public String handleInscriptionForm(@RequestParam("email") String email, @RequestParam("password") String password,
+			RedirectAttributes redirectAttributes) {
+		if (clientManager.getByEmail(email) == null) {
+			clientManager.addClient(new Client(email, password));
+			redirectAttributes.addFlashAttribute("message", "Vous êtes ajouté");
+			return "redirect:/client/connexion";
+		} else {
+			redirectAttributes.addFlashAttribute("message", "Utilisateur existant");
+			return "redirect:/client/inscription";
+		}
+	}
+
+	@PostMapping("/connexion")
+	public String handleConnexionForm(@RequestParam("email") String email, @RequestParam("password") String password,
+			RedirectAttributes redirectAttributes, HttpSession session) {
+		Client client = clientManager.getByEmail(email);
+		if (client == null) {
+			redirectAttributes.addFlashAttribute("message", "Utilisateur introuvable");
+			return "redirect:/client/connexion";
+		} else if (client.password.equals(password)) {
+			session.setAttribute("client", client);
+
+			Commande commande = new Commande("12345", client);
+			session.setAttribute("commande", commande);
+
+			redirectAttributes.addFlashAttribute("message", "Vous êtes connecté");
+			return "redirect:/";
+		} else {
+			redirectAttributes.addFlashAttribute("message", "Mot de passe incorrect");
+			return "redirect:/client/connexion";
+		}
+	}
 }

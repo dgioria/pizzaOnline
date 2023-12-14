@@ -20,9 +20,8 @@ public class Commande {
     public List<CommandeLigne> commandeLignes = new ArrayList<>();
     @ManyToOne
     Client client;
-    public Commande(String date,Client client, double prix) {
+    public Commande(String date,Client client) {
         this.date = date;
         this.client = client;
-        this.prix = prix;
     }
 }
