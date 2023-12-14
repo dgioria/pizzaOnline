@@ -26,22 +26,19 @@ public class CartController {
 	@Autowired
 	PizzaManager pizzaManager;
 
-	private List<OrderRow> order = new ArrayList<>();
-
 	@GetMapping("")
 	public String showAll(HttpServletRequest request, HttpSession session, Model model) {
 
 		if (session.getAttribute("client") == null)
 			return "redirect:/client/connexion";
 
-		List<OrderRow> orderList = (List<OrderRow>) request.getSession().getAttribute("order");
-		if (orderList != null) {
-
-			Double total = pizzaManager.computFinalPrice(orderList);
+		Commande commande = (Commande) request.getSession().getAttribute("commande");
+		if (commande.getCommandeLignes().size() > 0) {
+			Double total = pizzaManager.computFinalPrice(commande.getCommandeLignes());
 			model.addAttribute("total", total);
 		}
 
-		model.addAttribute("orderList", orderList);
+		model.addAttribute("orderList", commande.getCommandeLignes());
 
 		return "cart";
 	}
@@ -57,7 +54,8 @@ public class CartController {
 		Commande commande = (Commande) session.getAttribute("commande");
 		commande.getCommandeLignes().add(commandeLigne);
 
-		request.getSession().setAttribute("order", order);
+		session.setAttribute("commande", commande);
+		
 		return "all_pizza";
 	}
 
