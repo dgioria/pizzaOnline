@@ -97,19 +97,16 @@ public class PizzaOnlineApplication {
 		CommandeLigne c1l1 = new CommandeLigne(p1,2);
 		CommandeLigne c1l2 = new CommandeLigne(p2,2);
 		CommandeLigne c2l1 = new CommandeLigne(p1,2);
-		commandeLigneDAO.save(c1l1);
-		commandeLigneDAO.save(c1l2);
-		commandeLigneDAO.save(c2l1);
 
 		Client client = new Client("root@gmail.com","root");
 		clientManager.addClient(client);
 
-		Commande c1 = new Commande("20/02/2022",client);
+		Commande c1 = new Commande(client);
 		c1.getCommandeLignes().add(c1l1);
 		c1.getCommandeLignes().add(c1l2);
 		commandeDAO.save(c1);
 
-		Commande c2 = new Commande("24/02/2022",client);
+		Commande c2 = new Commande(client);
 		c2.getCommandeLignes().add(c2l1);
 		commandeDAO.save(c2);
 	}

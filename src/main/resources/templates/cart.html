@@ -42,14 +42,19 @@
                 </div>	
                 <div th:if="${total != null}">
                     <p class="mt-2">Final price : <strong th:text="${total}"></strong> €</p>
+                    <form th:action="@{/cart/confirmation}" method="post">
+                        <button type="submit">Commander</button>
+                    </form>
             	</div>
             	
-            	
             </div>
-            <div th:if="${orderList == null and #lists.isEmpty(orderList)}">
+            <div th:if="${orderList == null or #lists.isEmpty(orderList)}">
                     <p class="mt-2">You haven't chosen any pizza yet !</p>
             </div>
-        </div>    
+        </div>
+        <div>
+
+        </div>
 	</main>
      <div th:replace="fragments/footer :: footer"></div>
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
