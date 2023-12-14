@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDateTime;
-
 @Controller
 @RequestMapping("/cart")
 public class CartController {
 
+
     @Autowired
     PizzaManager pizzaManager;
+
 
     @Autowired
     CommandeManager commandeManager;
@@ -46,16 +46,14 @@ public class CartController {
     @PostMapping("/add")
     public String addPizza(@RequestBody OrderRow orderRow, HttpServletRequest request, HttpSession session) {
 
-        if (session.getAttribute("client") == null)
-            return "redirect:/client/connexion";
 
-        Pizza pizza = pizzaManager.getByNom(orderRow.getPizzaName());
-        CommandeLigne commandeLigne = new CommandeLigne(pizza, orderRow.getQuantity());
-        Commande commande = (Commande) session.getAttribute("commande");
-        commande.getCommandeLignes().add(commandeLigne);
-        session.setAttribute("commande", commande);
-        return "all_pizza";
-    }
+		if (session.getAttribute("client") == null)
+			return "redirect:/client/connexion";
+		
+		// si la pizza est deja dans la commande -> je modifie la quantite, sinon -> je cree une nouvelle ligne de la commande
+		Commande commande = (Commande) session.getAttribute("commande");
+		commandeManager.updateCommande(commande, orderRow);
+
 
     @PostMapping("/confirmation")
     public String confirmation(HttpSession session, HttpServletRequest request,

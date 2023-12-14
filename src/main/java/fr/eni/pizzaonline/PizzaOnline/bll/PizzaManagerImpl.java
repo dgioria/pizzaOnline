@@ -1,13 +1,13 @@
 package fr.eni.pizzaonline.PizzaOnline.bll;
 
-import fr.eni.pizzaonline.PizzaOnline.bo.CommandeLigne;
-import fr.eni.pizzaonline.PizzaOnline.bo.OrderRow;
-import fr.eni.pizzaonline.PizzaOnline.bo.Pizza;
-import fr.eni.pizzaonline.PizzaOnline.dal.PizzaDAO;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import fr.eni.pizzaonline.PizzaOnline.bo.CommandeLigne;
+import fr.eni.pizzaonline.PizzaOnline.bo.Pizza;
+import fr.eni.pizzaonline.PizzaOnline.dal.PizzaDAO;
 
 @Service
 public class PizzaManagerImpl implements PizzaManager {
