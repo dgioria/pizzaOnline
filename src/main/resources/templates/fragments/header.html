@@ -1,7 +1,10 @@
 <!DOCTYPE html>
  <header>
     <div th:if="${message}" class="eni-message">
-        <p th:text="${message}"></p>
+		<div class="alert alert-dismissible alert-primary">
+		  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		  <strong th:text="${message}">Well done!</strong>
+		</div>
     </div>
         <nav class="navbar navbar-expand-md bg-primary" data-bs-theme="dark">
     <div class="container-fluid">

@@ -53,6 +53,10 @@ public class CartController {
 		// si la pizza est deja dans la commande -> je modifie la quantite, sinon -> je cree une nouvelle ligne de la commande
 		Commande commande = (Commande) session.getAttribute("commande");
 		commandeManager.updateCommande(commande, orderRow);
+		
+		session.setAttribute("commande", commande);
+		return "all_pizza";
+    }
 
 
     @PostMapping("/confirmation")
