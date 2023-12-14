@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +17,12 @@ public class Commande {
     public long noCommande;
     public String date;
     public double prix;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     public List<CommandeLigne> commandeLignes = new ArrayList<>();
     @ManyToOne
     Client client;
-    public Commande(String date,Client client) {
-        this.date = date;
+    public Commande(Client client) {
+        this.date = LocalDateTime.now().toString();
         this.client = client;
     }
 }
