@@ -22,11 +22,13 @@ public class Pizza {
     @ManyToMany
     public List<Fromage> fromages = new ArrayList<Fromage>();
     public double prix;
+    boolean custom;
 
-    public Pizza(String nom, Base base, double prix) {
+    public Pizza(String nom, Base base, double prix, boolean custom) {
         super();
         this.nom = nom;
         this.base = base;
         this.prix = prix;
+        this.custom = custom;
     }
 }

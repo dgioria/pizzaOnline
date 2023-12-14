@@ -40,4 +40,9 @@ public class PizzaManagerImpl implements PizzaManager {
 		return dao.findByNom(name);
 	}
 
+	@Override
+	public List<Pizza> getAllByCustomFalse() {
+		return dao.findAllByCustomFalse();
+	}
+
 }

@@ -42,7 +42,7 @@ public class PizzaController {
 		if(session.getAttribute("client") == null)
 			return "redirect:/client/connexion";
 					
-		List<Pizza> listPizzas = manager.getAllPizzas();
+		List<Pizza> listPizzas = manager.getAllByCustomFalse();
 
 		switch (menu) {
 		case "to-go":

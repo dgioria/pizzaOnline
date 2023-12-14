@@ -52,7 +52,7 @@ public class CommandeManagerImpl implements CommandeManager {
 
 		Pizza pizza;
 		if(pizzaManager.getByNom(orderRow.getPizzaName()) == null) {
-			pizza = new Pizza(orderRow.getPizzaName(), null, orderRow.getPrice());
+			pizza = new Pizza(orderRow.getPizzaName(), null, orderRow.getPrice(),true);
 			populatePizza(pizza, orderRow);
 			pizzaManager.addPizza(pizza);
 		}else {

@@ -11,5 +11,5 @@ public interface PizzaManager {
     public List<Pizza> getAllPizzas();
     public Double computFinalPrice(List<CommandeLigne> commandeLignes);
     public Pizza getByNom(String name);
-    
+    public List<Pizza> getAllByCustomFalse();
 }
