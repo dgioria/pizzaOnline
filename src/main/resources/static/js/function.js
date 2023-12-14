@@ -92,33 +92,6 @@ function calculatePrice() {
 
 }
 
-//function submitForm() {
-//    // Retrieve the values from the form elements
-//   
-//    let pizzaName = document.getElementById("pizzaName").value;
-//    let base = document.getElementById("base").value;
-//
-//    // Retrieve selected cheese options
-//    let selectedCheeses = Array.from(document.querySelectorAll('input[name="cheese"]:checked')).map(cheese => cheese.value);
-//
-//    // Retrieve selected toppings
-//    let selectedToppings = Array.from(document.getElementById("exampleSelect2").selectedOptions).map(topping => topping.value);
-//
-//    // Retrieve the calculated price
-//    let finalPrice = document.getElementById("price").value;
-//	
-//    // Display the retrieved information (you can customize this part based on your needs)
-//    console.log("Pizza Name: " + pizzaName);
-//    console.log("Base: " + base);
-//    console.log("Selected Cheeses: " + selectedCheeses);
-//    console.log("Selected Toppings: " + selectedToppings);
-//    console.log("Final Price: " + finalPrice);
-//
-//    // Add any additional logic or send the data to the server as needed
-//
-//    // Optionally, you can submit the form programmatically
-//   // document.getElementById("custom_pizza").submit();
-//}
 
 const form = document.getElementById('custom_pizza');
 
@@ -173,8 +146,7 @@ function handleSubmit(event){
         console.error('Error:', error);
     });
  
-
-  
+ 
     
   //  document.getElementById('colors-form').reset();
     
