@@ -10,4 +10,5 @@ public interface CommandeManager {
     public List<Commande> getCommandesByClient(Client client);
     public void addCommande(Commande commande);
     public void updateCommande(Commande commande, OrderRow orderRow);
+	public void deleteLigne(Commande commande, String nomPizza);
 }
