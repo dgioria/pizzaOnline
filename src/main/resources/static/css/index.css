@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+footer.footer.bg-primary.position-relative.bottom-0{
+	bottom: -2.6rem!important;
+}
