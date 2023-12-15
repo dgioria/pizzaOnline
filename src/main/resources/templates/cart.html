@@ -43,7 +43,7 @@
                 <div th:if="${total != null}">
                     <p class="mt-2">Final price : <strong th:text="${total}"></strong> €</p>
                     <form th:action="@{/cart/confirmation}" method="post">
-                        <button type="submit">Commander</button>
+                        <button class="btn btn-primary mb-4" type="submit">Commander</button>
                     </form>
             	</div>
             	
