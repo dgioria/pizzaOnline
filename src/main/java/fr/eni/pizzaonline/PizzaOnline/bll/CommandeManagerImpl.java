@@ -75,4 +75,15 @@ public class CommandeManagerImpl implements CommandeManager {
 		pizza.setBase(baseDao.findByLibelle(orderRow.getBase()));
 		
 	}
+
+	@Override
+	public void deleteLigne(Commande commande, String nomPizza) {
+		
+		for (CommandeLigne ligne : commande.getCommandeLignes()) {
+			if (ligne.pizza.getNom().equals(nomPizza)) {
+				commande.getCommandeLignes().remove(ligne);
+				return;
+			}
+		}
+	}
 }

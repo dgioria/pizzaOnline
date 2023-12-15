@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,10 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/cart")
 public class CartController {
 
-
     @Autowired
     PizzaManager pizzaManager;
-
 
     @Autowired
     CommandeManager commandeManager;
@@ -71,5 +70,15 @@ public class CartController {
         session.setAttribute("commande", commande);
         return "redirect:/";
     }
-
+    
+    @PostMapping("/delete")
+    public String deletePizza(@RequestBody OrderRow orderRow, HttpSession session) {
+    	
+    	Commande commande = (Commande) session.getAttribute("commande");
+    	commandeManager.deleteLigne(commande, orderRow.getPizzaName());
+    	session.setAttribute("commande", commande);
+    	
+    	return "redirect:/cart";
+    }
+    
 }

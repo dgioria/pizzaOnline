@@ -153,3 +153,57 @@ function handleSubmit(event){
 }
 
 form.addEventListener('submit', handleSubmit);
+
+// ################# delete pizza ##################
+
+function deletePizza(button) {
+	
+    // Traverse the DOM to find the associated h5 element
+    let cardBody = button.closest('.card-body');
+    let h5Element = cardBody.querySelector('.card-title');
+    // Get the text content of the h5 element
+    let pizzaName = h5Element.textContent;
+   
+    console.log(pizzaName);
+    
+    // Create a data object with the pizza information
+    let pizzaData = {
+        pizzaName: pizzaName,
+        quantity: 0,
+        price: 0,
+        base: null,
+        ingredients: null,
+        fromages: null
+    };
+
+    // Make an Ajax request to add the pizza to the cart
+    fetch('/cart/delete', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(pizzaData)
+    })
+    .then(response => {
+        console.log(response.status); // Log the HTTP status code
+        return response.text(); // Retrieve the response as text
+    })
+    .then(data => {
+        // Log the response as text
+        // Check if the response contains HTML
+        if (data.includes('<html') || data.includes('<!DOCTYPE')) {
+            // Handle the HTML response, e.g., display it in a modal or alert
+           
+        } else {
+            // Parse the JSON response
+            let jsonData = JSON.parse(data);
+            console.log(jsonData);
+            // Handle the response, e.g., show a success message
+
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+   
+}
